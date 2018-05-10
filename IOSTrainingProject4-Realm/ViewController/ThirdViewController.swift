@@ -13,7 +13,9 @@ class ThirdViewController: UIViewController {
     let label : UILabel = UILabel()
     let textView : UITextView = UITextView()
     let button : UIButton =  UIButton()
-    var data : String?
+    var data : Object?
+    let presenter : viewPresenter = viewPresenter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,7 +36,9 @@ extension ThirdViewController{
         label.text = "Your Name Is"
         label.textColor = UIColor.black
         
-        textView.text = self.data
+        if let name = self.data!["name"]{
+            textView.text = String(describing: name)
+        }
         textView.textColor = UIColor.black
         textView.font = UIFont.boldSystemFont(ofSize: 24)
         
@@ -77,19 +81,9 @@ extension ThirdViewController{
     }
 }
 
+// MARK: - GetDataFromRealm
 extension ThirdViewController{
-    func getData() -> String{
-        var username : String?
-        do {
-            let realm = try Realm()
-            let result = realm.object(ofType: viewDataStore.self, forPrimaryKey: ViewController.id)
-            debugPrint(result?.name)
-            guard let name = result?.name else{ return "" }
-            username = name
-        } catch {
-            debugPrint(error)
-        }
-        return username!
-
+    func getData() -> Object{
+       return presenter.getData(object: viewDataStore.self , primaryKey: ViewController.id)
     }
 }

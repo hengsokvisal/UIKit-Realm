@@ -21,6 +21,16 @@ class viewPresenter{
         }catch {
             debugPrint(error)
         }
-
+    }
+    
+    func getData(object : Object.Type , primaryKey : Int) -> Object {
+        var username : Object?
+        do{
+            let realm = try Realm()
+            username = realm.object(ofType: object, forPrimaryKey: primaryKey)!
+        }catch{
+            print(Error.self)
+        }
+        return username!
     }
 }
