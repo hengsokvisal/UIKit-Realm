@@ -14,11 +14,12 @@ class ThirdViewController: UIViewController {
     let textView : UITextView = UITextView()
     let button : UIButton =  UIButton()
     var data : Object?
-    let presenter : viewPresenter = viewPresenter()
+    var presenter : ThirdScreenPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        presenter = ThirdScreenPresenter()
         self.data = getData()
         createComponent()
         addSupView()
@@ -84,6 +85,6 @@ extension ThirdViewController{
 // MARK: - GetDataFromRealm
 extension ThirdViewController{
     func getData() -> Object{
-       return presenter.getData(object: viewDataStore.self , primaryKey: ViewController.id)
+       return presenter!.getData(object: UserEntity.self , primaryKey: ViewController.id)
     }
 }

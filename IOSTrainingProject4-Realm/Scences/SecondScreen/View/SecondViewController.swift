@@ -10,14 +10,17 @@ import SnapKit
 
 class SecondViewController: UIViewController {
     let button : UIButton = UIButton()
+    var presenter : SecondScreenPresenter?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let route = SecondScreenRouter(viewController: self)
+        presenter = SecondScreenPresenter(router: route)
         createComponent()
         layoutSetup()
     }
 }
-
 
 // MARK: - Create Component
 extension SecondViewController{
@@ -45,7 +48,6 @@ extension SecondViewController{
 // MARK: - Button Action
 extension SecondViewController{
     @objc func buttonAction() -> Void {
-        self.navigationController?.pushViewController((ThirdViewController()), animated: true)
-       
+        presenter?.request()
     }
 }

@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-final class viewDataStore : Object{
+final class UserEntity : Object{
     @objc dynamic var id : Int = 0
     @objc dynamic var name : String = ""
     override static func primaryKey() -> String? {

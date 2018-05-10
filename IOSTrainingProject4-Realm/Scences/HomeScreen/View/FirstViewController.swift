@@ -14,12 +14,16 @@ class ViewController: UIViewController {
     let label : UILabel = UILabel()
     let textfield : UITextField = UITextField()
     let button : UIButton = UIButton()
-    static var id : Int = 0
+    static var id : Int = Int(arc4random())
     
-    let presenter : viewPresenter? = viewPresenter()
+    var presenter: ViewPresenter?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let router = HomeScreenRouter(vc: self)
+        self.presenter = ViewPresenter(router: router)
         
         createComponent()
         addSupView()
@@ -85,8 +89,9 @@ extension ViewController
     @objc func buttonClick() -> Void
     {
         ViewController.id = ViewController.id + 1
-        presenter?.request(name: textfield.text!,id: ViewController.id)
-        self.navigationController?.pushViewController(SecondViewController(), animated: true)
+        //presenter.request(name: textfield.text!,id: ViewController.id)
+        presenter?.onSubmit(name: textfield.text!, id: ViewController.id)
+       // self.navigationController?.pushViewController(SecondViewController(), animated: true)
     }
 }
 
