@@ -10,8 +10,6 @@ import RealmSwift
 class ViewPresenter{
     
     var router : HomeScreenRouter?
-    
-    
     init(router: HomeScreenRouter) {
        self.router = router
     }
@@ -38,8 +36,4 @@ class ViewPresenter{
     func navigateToSecond() {
         router?.nagivateToSecondScreen()
     }
-    
-    
-    
-    
 }

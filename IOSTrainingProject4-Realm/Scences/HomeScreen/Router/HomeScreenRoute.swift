@@ -19,6 +19,6 @@ struct HomeScreenRouter {
 // MARK: - Navigation
 extension HomeScreenRouter{
     func nagivateToSecondScreen(){
-        self.viewController?.present(SecondViewController(), animated: true, completion: nil)
+        self.viewController?.navigationController?.pushViewController(SecondViewController(), animated: true)
     }
 }

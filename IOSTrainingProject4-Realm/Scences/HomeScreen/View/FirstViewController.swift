@@ -89,9 +89,7 @@ extension ViewController
     @objc func buttonClick() -> Void
     {
         ViewController.id = ViewController.id + 1
-        //presenter.request(name: textfield.text!,id: ViewController.id)
         presenter?.onSubmit(name: textfield.text!, id: ViewController.id)
-       // self.navigationController?.pushViewController(SecondViewController(), animated: true)
     }
 }
 

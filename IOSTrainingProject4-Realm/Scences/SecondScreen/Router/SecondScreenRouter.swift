@@ -18,6 +18,6 @@ struct SecondScreenRouter {
 // MARK: - Route
 extension SecondScreenRouter{
     func navigateToThirdScreen(){
-        self.viewController?.present(ThirdViewController(), animated: true, completion: nil)
+        self.viewController?.navigationController?.pushViewController(ThirdViewController(), animated: true)
     }
 }
